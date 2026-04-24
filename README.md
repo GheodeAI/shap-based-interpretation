@@ -252,4 +252,4 @@ If you use this code in your research, please cite:
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the EUPL 1.2 License. See [LICENSE](LICENSE) for details.
