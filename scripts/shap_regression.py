@@ -49,8 +49,8 @@ import tensorflow as tf
 from sklearn.cluster import KMeans
 from tensorflow import keras
 
-from src.va_am.utils import AutoEncoders
-from src.va_am.va_am import perform_preprocess, square_dims
+from va_am.utils import AutoEncoders
+from va_am.va_am import perform_preprocess, square_dims
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -382,13 +382,14 @@ def process_case_study(
     params["data_of_interest_init"], params["data_of_interest_end"] = (
         hw["start"], hw["end"]
     )
-    *_, data_hw_prs, _, _, _, _ = perform_preprocess(params)
+    params["out_preprocess"] = ["data_of_interest_pred"]
+    data_hw_prs = perform_preprocess(params)[0]
     data_hw_prs = np.flip(data_hw_prs, axis=1)
 
     params["data_of_interest_init"], params["data_of_interest_end"] = (
         nohw["start"], nohw["end"]
     )
-    *_, data_nohw_prs, _, _, _, _ = perform_preprocess(params)
+    data_nohw_prs = perform_preprocess(params)[0]
     data_nohw_prs = np.flip(data_nohw_prs, axis=1)
 
     log.info("  Data loaded  →  HW %s   NO-HW %s",
@@ -574,8 +575,8 @@ def main() -> None:
         # perform_preprocess returns x_train_ind_prs (post-industrial data).
         params["data_of_interest_init"] = hw_cases[0]["start"]
         params["data_of_interest_end"]  = hw_cases[0]["end"]
-        (_, _, _, _, _,
-         _, _, x_train_full, _, _, _) = perform_preprocess(params)
+        params["out_preprocess"] = ["x_train_ind_pred"]
+        x_train_full = perform_preprocess(params)[0]
 
         x_train_clust = x_train_full.copy()
         # Limit background samples for DeepExplainer (memory / speed trade-off)

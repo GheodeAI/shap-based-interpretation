@@ -20,10 +20,10 @@
     },
 
     "datasets": {
-        "prs_dataset":    "~/data/data_dailyMean_zpms_1940-2022.nc",
-        "temp_dataset":   "~/data/data_dailyMax_t2m_1940-2022.nc",
-        "ident_dataset":  "~/data/data_dailyMax_t2m_1940-2022.nc",
-        "temp_var_name":  "t2m_dailyMax"
+        "pred_dataset":     "./data/data_dailyMean_zpms_1940-2022.nc",
+        "target_dataset":   "./data/data_dailyMax_t2m_1940-2022.nc",
+        "ident_dataset":    "./data/data_dailyMax_t2m_1940-2022.nc",
+        "target_var_name":  "t2m_dailyMax"
     },
 
     "model": {
@@ -46,7 +46,7 @@
     },
 
     "clustering": {
-        "perform_cluster": true,
+        "perform_cluster": false,
         "n_clusters":      8,
         "path_cluster":    "./shap/clusters/clusterall512.npy"
     },
@@ -55,5 +55,5 @@
         "output_dir": "./shap/mod512"
     },
 
-    "verbose": false
+    "verbose": true
 }
