@@ -1,0 +1,28 @@
+# Core scientific stack
+numpy>=1.23
+matplotlib>=3.6
+scipy>=1.10
+
+# Deep learning
+tensorflow>=2.11
+
+# Explainability
+shap>=0.42
+
+# ML utilities
+scikit-learn>=1.2
+
+# Geospatial / data
+xarray>=2023.1
+basemap>=1.3          # mpl_toolkits.basemap
+netCDF4>=1.6
+
+# Progress bars
+tqdm>=4.65
+
+# Notebooks
+jupyter>=1.0
+ipykernel>=6.0
+
+# Optional: Telegram notifications
+requests>=2.28

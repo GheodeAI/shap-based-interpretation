@@ -1,0 +1,69 @@
+{
+    "_comment": "HW and NO-HW case study periods used for SHAP analysis. Each pair (hw[i], no_hw[i]) is processed together. Dates are inclusive in YYYY-MM-DD format.",
+
+    "hw": [
+        {
+            "id":    1,
+            "label": "European Heatwave 2003",
+            "start": "2003-08-01",
+            "end":   "2003-08-10"
+        },
+        {
+            "id":    2,
+            "label": "Heatwave 2014",
+            "start": "2014-07-19",
+            "end":   "2014-07-28"
+        },
+        {
+            "id":    3,
+            "label": "Heatwave 2018",
+            "start": "2018-07-25",
+            "end":   "2018-08-03"
+        },
+        {
+            "id":    4,
+            "label": "Heatwave 2019",
+            "start": "2019-07-20",
+            "end":   "2019-07-29"
+        },
+        {
+            "id":    5,
+            "label": "Heatwave 2022",
+            "start": "2022-08-10",
+            "end":   "2022-08-19"
+        }
+    ],
+
+    "no_hw": [
+        {
+            "id":    1,
+            "label": "Control period 2004",
+            "start": "2004-07-01",
+            "end":   "2004-07-10"
+        },
+        {
+            "id":    2,
+            "label": "Control period 2012",
+            "start": "2012-07-15",
+            "end":   "2012-07-24"
+        },
+        {
+            "id":    3,
+            "label": "Control period 2013",
+            "start": "2013-07-10",
+            "end":   "2013-07-19"
+        },
+        {
+            "id":    4,
+            "label": "Control period 2019",
+            "start": "2019-08-01",
+            "end":   "2019-08-10"
+        },
+        {
+            "id":    5,
+            "label": "Control period 2021",
+            "start": "2021-06-13",
+            "end":   "2021-06-22"
+        }
+    ]
+}
