@@ -1,0 +1,59 @@
+{
+    "_comment": "Model, domain, and preprocessing configuration for SHAP heatwave analysis.",
+
+    "name": "all512",
+    "season": "all",
+
+    "domain": {
+        "latitude_min":   32,
+        "latitude_max":   70,
+        "longitude_min": -28,
+        "longitude_max":  30,
+        "resolution":      2
+    },
+
+    "time_periods": {
+        "pre_init":  "1940-01-01",
+        "pre_end":   "1980-12-31",
+        "post_init": "1981-01-01",
+        "post_end":  "2022-12-31"
+    },
+
+    "datasets": {
+        "prs_dataset":    "~/data/data_dailyMean_zpms_1940-2022.nc",
+        "temp_dataset":   "~/data/data_dailyMax_t2m_1940-2022.nc",
+        "ident_dataset":  "~/data/data_dailyMax_t2m_1940-2022.nc",
+        "temp_var_name":  "t2m_dailyMax"
+    },
+
+    "model": {
+        "file_AE_post":  "./models/MvAE_fr_mv512.h5",
+        "file_AE_pre":   "./models/MvAE_atrib_fr_512_pre.h5",
+        "latent_dim":    512,
+        "arch":          10,
+        "period":        "both"
+    },
+
+    "preprocessing": {
+        "interest_region":      [42, 50, -6, 8],
+        "interest_region_type": "coord",
+        "per_what":             "per_day",
+        "remove_year":          false,
+        "replace_choice":       true,
+        "p":                    2,
+        "k":                    20,
+        "iter":                 1000
+    },
+
+    "clustering": {
+        "perform_cluster": true,
+        "n_clusters":      8,
+        "path_cluster":    "./shap/clusters/clusterall512.npy"
+    },
+
+    "output": {
+        "output_dir": "./shap/mod512"
+    },
+
+    "verbose": false
+}

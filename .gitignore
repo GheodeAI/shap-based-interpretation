@@ -1,0 +1,61 @@
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# ── Virtual environments ──────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Jupyter ───────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ── Data and model files (large; stored externally) ───────────────────────
+data/
+models/
+*.h5
+*.nc
+*.npy
+*.npz
+
+# ── Generated figures ─────────────────────────────────────────────────────
+shap/mod512/
+shap/figures_paper/
+shap/clusters/
+
+# Keep the directory stubs so the repo structure is clear
+!shap/mod512/.gitkeep
+!shap/figures_paper/.gitkeep
+!shap/clusters/.gitkeep
+
+# ── Credentials ───────────────────────────────────────────────────────────
+secret.txt
+*.env
+.env
+
+# ── OS artefacts ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ───────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
