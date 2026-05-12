@@ -4,9 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Companion code for:**  
-> *"Deep Learning Meets Climate Anomalies: SHAP-Based Interpretation of Heatwave Reconstructions with Autoencoders"*  
-> C. M. Marina, J. Pérez-Aracil, R. McAdam, J. Luterbacher, E. Scoccimarro, E. Xoplaki, S. Salcedo-Sanz  
-> *Geophysical Research Letters* (submitted)
+
 
 ---
 
@@ -30,13 +28,16 @@ This repository contains the code used to compute and visualise **SHAP (SHapley 
 │   └── case_studies.json   # HW and NO-HW case study periods
 ├── scripts/
 │   ├── shap_regression.py  # Batch SHAP computation (main pipeline)
-│   └── shap_figures.py     # Figure generation from saved .npy arrays
+│   ├── shap_figures.py     # Comparative/panel figures from .npy arrays
+│   └── shap_composite.py   # Composite anomaly + SHAP overlay figures
 ├── notebooks/
 │   ├── 01_shap_regression.ipynb  # Interactive SHAP exploration
-│   └── 02_shap_figures.ipynb     # Interactive figure tuning
+│   ├── 02_shap_figures.ipynb     # Interactive figure tuning
+│   └── 03_shap_composite.ipynb   # Interactive composite + SHAP overlay
 ├── shap/
 │   ├── mod512/             # SHAP .npy and .png outputs (per case study)
-│   ├── figures_paper/      # Final publication figures
+│   ├── figures_paper/      # Comparative panel figures
+│   ├── comp_shap/          # Composite anomaly + SHAP overlay figures
 │   └── clusters/           # KMeans cluster labels and visualisations
 ├── requirements.txt
 └── README.md
@@ -163,6 +164,36 @@ python scripts/shap_figures.py \
 #   --nine                also produce 3×3 diagnostic grids per case study
 ```
 
+### 3. Generate composite anomaly + SHAP overlay figures
+
+Overlays the normalised SHAP map on the climatological anomaly field for each
+variable and case study:
+
+```bash
+python scripts/shap_composite.py \
+    --config config/model.json \
+    --case-studies config/case_studies.json \
+    --vars z500 msl peva sm \
+    --verbose
+```
+
+Outputs are saved under `shap/comp_shap/{var}/`.
+
+| Flag | Description |
+|------|-------------|
+| `--vars` | One or more of `z500 msl peva sm` (default: all four) |
+| `--no-individual` | Save only the 5-case mean figure, skip per-case figures |
+| `--dataset` | Override the NetCDF path from config |
+
+**Variable-specific colour settings applied automatically:**
+
+| Variable | Composite cmap | SHAP threshold | Composite limits |
+|----------|---------------|----------------|------------------|
+| z500 | BrBG → PuOr blend | 0.30 | data-driven |
+| msl  | BrBG → PuOr blend | 0.60 | data-driven |
+| peva | RdBu_r (white centre, cf11) | — | ±1e-4 |
+| sm   | RdBu_r (white centre, cf7)  | — | ±0.20 |
+
 ### 3. Interactive exploration (notebooks)
 
 ```bash
@@ -235,18 +266,7 @@ Then pass `--telegram` to either script.
 
 If you use this code in your research, please cite:
 
-```bibtex
-@article{marina2025shap,
-  title   = {Deep Learning Meets Climate Anomalies: SHAP-Based Interpretation
-             of Heatwave Reconstructions with Autoencoders},
-  author  = {Marina, C. M. and P{\'e}rez-Aracil, J. and McAdam, R. and
-             Luterbacher, J. and Scoccimarro, E. and Xoplaki, E. and
-             Salcedo-Sanz, S.},
-  journal = {Geophysical Research Letters},
-  year    = {2025},
-  note    = {submitted}
-}
-```
+
 
 ---
 

@@ -1,3 +1,27 @@
+## [1.1.0] – 2025
+
+### Added
+- `scripts/shap_composite.py` – overlays normalised SHAP values on the
+  climatological composite anomaly (field − day-of-year climatology, 1980–2010
+  baseline) for each variable and case study. Produces individual per-case and
+  5-case-mean figures for both HW and NO-HW event types.
+- `notebooks/03_shap_composite.ipynb` – interactive companion for the
+  composite script, with step-by-step cell-by-cell exploration.
+- `shap/comp_shap/` output directory stubs added to the repo structure.
+
+### Details
+- **Z500 / MSL composite cmap** – BrBG (cool tail) blended with PuOr (warm
+  tail), with a semi-transparent black band at the zero crossing
+  (colors[7] = [0,0,0,0.3]), as specified.
+- **PEva / SM composite cmap** – RdBu_r with three central levels set to
+  white to highlight the zero band.
+- **SHAP thresholds** – z500: 0.30; msl: 0.60; peva: cf11; sm: cf7.
+- **Normalisation** – z500/msl use the per-event-type global maximum;
+  peva/sm use the combined (HW+NO-HW) maximum so both event types share a
+  consistent colour scale.
+
+---
+
 # Changelog
 
 All notable changes to this project are documented here.
