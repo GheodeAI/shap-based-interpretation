@@ -1,7 +1,10 @@
 # SHAP-Based Interpretation of Heatwave Reconstructions with Autoencoders
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
-[![License: EUPL1.2](https://img.shields.io/badge/License-EUPL1.2-yellow.svg)
+[![License: EUPL1.2](https://img.shields.io/badge/License-EUPL1.2-yellow.svg)](LICENSE)
+[![DOI: 10.5281/zenodo.20324346](https://zenodo.org/badge/DOI/10.5281/zenodo.20324346.svg)](https://doi.org/10.5281/zenodo.20324346)
+
+[
 ](LICENSE)
 
 ---
