@@ -4,7 +4,7 @@
     "hw": [
         {
             "id":    1,
-            "label": "European Heatwave 2003",
+            "label": "Heatwave 2003",
             "start": "2003-08-01",
             "end":   "2003-08-10"
         },

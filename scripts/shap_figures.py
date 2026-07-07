@@ -123,17 +123,16 @@ def _build_cmaps() -> tuple[ListedColormap, ListedColormap, ListedColormap]:
 # ---------------------------------------------------------------------------
 # SHAP file discovery
 # ---------------------------------------------------------------------------
-def _discover_files(shap_dir: str, var: str) -> tuple[list, list, list]:
+def _discover_files(shap_dir: str, var: str, is_atribution: bool = False) -> tuple[list, list, list]:
     """
     Glob and sort the per-variable mean-sum ``.npy`` files, then split by
     time-period suffix (all / post / pre).
 
-    Each case study contributes exactly 3 files (one per period), so the
-    sorted list interleaves them:
+    Each case study contributes exactly 3 files (one per period) if the 
+    flag is_atribution is True, so the sorted list interleaves them:
         cs_hw1/…all…,  cs_hw1/…post…,  cs_hw1/…pre…,
         cs_hw2/…all…,  …,  cs_nohw1/…, …
-
-    Taking every 3rd element recovers one period across all case studies.
+    If not, only all is expected
     """
     pattern = os.path.join(shap_dir, "cs_*", f"shap_*_meansum_{var}*.npy")
     files   = sorted(glob.glob(pattern))
@@ -143,13 +142,17 @@ def _discover_files(shap_dir: str, var: str) -> tuple[list, list, list]:
             f"Pattern searched: {pattern}\n"
             "Run shap_regression.py first."
         )
-    if len(files) % 3 != 0:
-        warnings.warn(
-            f"Expected a multiple of 3 files (all/post/pre × case studies) "
-            f"but found {len(files)}. Results may be incorrect.",
-            stacklevel=2,
-        )
-    return files[0::3], files[1::3], files[2::3]
+    if is_atribution:
+        if len(files) % 3 != 0:
+            warnings.warn(
+                f"Expected a multiple of 3 files (all/post/pre × case studies) "
+                f"but found {len(files)}. Results may be incorrect.",
+                stacklevel=2,
+            )
+        return files[0::3], files[1::3], files[2::3]
+    else:
+        return files, [], []
+    
 
 
 # ---------------------------------------------------------------------------
@@ -477,8 +480,12 @@ def _process_period(
              period_name, n_files, n_cs)
 
     # ── Load and normalise ────────────────────────────────────────────────
+    log.info("file_paths: %s", file_paths)
+    for p in file_paths:
+        log.info("p shape: %s",np.shape(np.load(p)))
     raw = np.array(
-        [np.flip(np.load(p)[0].reshape(20, 30), axis=0) for p in file_paths]
+        [np.flip(np.load(p).reshape(20, 30), axis=0) for p in file_paths]
+        #[np.flip(np.squeeze(np.load(p))) for p in file_paths]
     )
     ms_max = float(np.max(np.abs(raw)))
     if ms_max == 0:
@@ -486,6 +493,11 @@ def _process_period(
                     period_name)
         return
     ms_shap = raw / ms_max
+    #log.info("ms_shap: %s",ms_shap)
+    log.info("ms_shap shape: %s",ms_shap.shape)
+    log.info("raw shape: %s",raw.shape)
+    log.info("ms_max shape: %s",np.shape(ms_max))
+    log.info("ms_max: %s",ms_max)
 
     if threshold is not None:
         log.info("  Applying threshold %.4f", threshold)
@@ -647,6 +659,10 @@ def _build_parser() -> argparse.ArgumentParser:
         "-v", "--verbose", action="store_true",
         help="Enable DEBUG-level logging.",
     )
+    p.add_argument(
+        "--is-atribution", dest="is_atribution", action="store_true",
+        help="Enable DEBUG-level logging.",
+    )
     return p
 
 
@@ -674,7 +690,7 @@ def main() -> None:
     X, Y = np.meshgrid(lon_range, lat_range)
 
     # ── File discovery ────────────────────────────────────────────────────
-    paths_all, paths_post, paths_pre = _discover_files(args.shap_dir, args.var)
+    paths_all, paths_post, paths_pre = _discover_files(args.shap_dir, args.var, args.is_atribution)
 
     log.info("Variable      : %s", args.var)
     log.info("SHAP dir      : %s", args.shap_dir)
@@ -693,7 +709,7 @@ def main() -> None:
     # ── Process each period ───────────────────────────────────────────────
     os.makedirs(args.output_dir, exist_ok=True)
     for period_name, file_paths in tqdm(
-        [("all", paths_all), ("post", paths_post), ("pre", paths_pre)],
+        [("all", paths_all), ("post", paths_post), ("pre", paths_pre)] if args.is_atribution else [("all", paths_all)],
         desc="Periods",
     ):
         _process_period(
