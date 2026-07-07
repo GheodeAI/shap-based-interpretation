@@ -408,27 +408,27 @@ def _composite_figure(
     #ax.set_title(f"({var.upper()})", loc="left",  fontsize=14, fontweight="bold")
     #ax.set_title(title,              loc="right", fontsize=12)
 
-    # if var in ["z500", "msl"]:
-    #     cbar_comp = fig.colorbar(img_comp_no, ax=ax, extend="both",)
-    #                               #fraction=0.025, pad=0.01, shrink=0.85)
-    # else:
-    #     cbar_comp = fig.colorbar(img_comp_no, ax=ax,)
+    if var in ["z500", "msl"]:
+        cbar_comp = fig.colorbar(img_comp_no, ax=ax, extend="both",)
+                                  #fraction=0.025, pad=0.01, shrink=0.85)
+    else:
+        cbar_comp = fig.colorbar(img_comp_no, ax=ax,)
 
-    # if var in ["peva"]:
-    #     cbar_comp.formatter = ticker.ScalarFormatter(useMathText=True)
-    #     cbar_comp.formatter.set_powerlimits((0,0))
-    #     cbar_comp.update_ticks()
+    if var in ["peva"]:
+        cbar_comp.formatter = ticker.ScalarFormatter(useMathText=True)
+        cbar_comp.formatter.set_powerlimits((0,0))
+        cbar_comp.update_ticks()
         
 
-    # cbar_comp.set_label(f"Anomaly [{_units(var)}]", fontsize=26)
-    # cbar_comp.ax.tick_params(labelsize=24)
+    cbar_comp.set_label(f"Anomaly [{_units(var)}]", fontsize=26)
+    cbar_comp.ax.tick_params(labelsize=24)
 
-    # cbar_shap = fig.colorbar(img_shap, ax=ax,)# extend="neither",)
-    #                           #fraction=0.025, pad=0.05, shrink=0.85)
-    # cbar_shap.ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.2f'))
+    cbar_shap = fig.colorbar(img_shap, ax=ax,)# extend="neither",)
+                              #fraction=0.025, pad=0.05, shrink=0.85)
+    cbar_shap.ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.2f'))
 
-    # cbar_shap.set_label("Norm. SHAP", fontsize=26)
-    # cbar_shap.ax.tick_params(labelsize=24)
+    cbar_shap.set_label("Norm. SHAP", fontsize=26)
+    cbar_shap.ax.tick_params(labelsize=24)
 
     fig.tight_layout()
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
@@ -623,18 +623,18 @@ def main() -> None:
     log.info("Climatology computed  (%s – %s)", CLIM_START, CLIM_END)
 
     # ── Main loop ─────────────────────────────────────────────────────────
-    plt.rcParams.update({"font.size": 13})
-    # plt.rcParams.update({"font.size": 26})
+    #plt.rcParams.update({"font.size": 13})
+    plt.rcParams.update({"font.size": 26})
  
-    # # Register and apply the CMU Bold font
-    # _CMU_FONT_PATH = "/usr/share/fonts/truetype/cmu/cmunbx.ttf"
-    # if os.path.isfile(_CMU_FONT_PATH):
-    #     font_manager.fontManager.addfont(_CMU_FONT_PATH)
-    #     _cmu_name = font_manager.FontProperties(fname=_CMU_FONT_PATH).get_name()
-    #     plt.rcParams["font.family"] = _cmu_name
-    #     log.info("Using font: %s (%s)", _cmu_name, _CMU_FONT_PATH)
-    # else:
-    #     log.warning("CMU font not found at %s – using default font", _CMU_FONT_PATH)
+    # Register and apply the CMU Bold font
+    _CMU_FONT_PATH = "/usr/share/fonts/truetype/cmu/cmunbx.ttf"
+    if os.path.isfile(_CMU_FONT_PATH):
+        font_manager.fontManager.addfont(_CMU_FONT_PATH)
+        _cmu_name = font_manager.FontProperties(fname=_CMU_FONT_PATH).get_name()
+        plt.rcParams["font.family"] = _cmu_name
+        log.info("Using font: %s (%s)", _cmu_name, _CMU_FONT_PATH)
+    else:
+        log.warning("CMU font not found at %s – using default font", _CMU_FONT_PATH)
 
 
     combos = [

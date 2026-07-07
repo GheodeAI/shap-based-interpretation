@@ -707,11 +707,15 @@ def main() -> None:
         tag += f"p{int(args.percentile)}"
 
     # ── Process each period ───────────────────────────────────────────────
+    log.info("Paths all   : %s", paths_all)
+    log.info("Paths post   : %s", paths_post)
+    log.info("Paths pre   : %s", paths_pre)
     os.makedirs(args.output_dir, exist_ok=True)
     for period_name, file_paths in tqdm(
         [("all", paths_all), ("post", paths_post), ("pre", paths_pre)] if args.is_atribution else [("all", paths_all)],
         desc="Periods",
     ):
+        log.info("Files paths   : %s", file_paths)
         _process_period(
             period_name=period_name,
             file_paths=file_paths,

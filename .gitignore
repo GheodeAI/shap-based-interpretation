@@ -28,12 +28,12 @@ ENV/
 */.ipynb_checkpoints/
 
 # ── Data and model files (large; stored externally) ───────────────────────
-data/
-models/
-*.h5
-*.nc
-*.npy
-*.npz
+# data/
+# models/
+# *.h5
+# *.nc
+# *.npy
+# *.npz
 
 # ── Generated figures ─────────────────────────────────────────────────────
 shap/mod512/

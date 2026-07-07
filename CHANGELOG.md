@@ -1,6 +1,14 @@
-## [1.1.0] – 2025
+## [1.1.2] - May 2026
+
+- fix: License badge updates tu EUPL1.2
+- feat: zip data and models
+  * Models and data upload for Zenode
+  * Deflate level of data is changed to 5
+
+## [1.1.0] – Apr. 2026
 
 ### Added
+
 - `scripts/shap_composite.py` – overlays normalised SHAP values on the
   climatological composite anomaly (field − day-of-year climatology, 1980–2010
   baseline) for each variable and case study. Produces individual per-case and
@@ -29,9 +37,10 @@ Versions follow [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [1.0.0] – 2025
+## [1.0.1] – Apr. 2026
 
 ### Added
+
 - Initial public release.
 - `scripts/shap_regression.py` – batch SHAP computation for all HW / NO-HW
   case study pairs with a single invocation; loops over all 5 pairs, shares
@@ -50,6 +59,7 @@ Versions follow [Semantic Versioning](https://semver.org/).
   normalisation, thresholds, and layouts before batch generation.
 
 ### Changed
+
 - Case studies updated to 5 HW + 5 NO-HW periods (2003, 2014, 2018, 2019,
   2022 / 2004, 2012, 2013, 2019, 2021).
 - Output directories restructured to `shap/mod512/cs_hw{N}/` and
@@ -58,6 +68,7 @@ Versions follow [Semantic Versioning](https://semver.org/).
 - Colourbar logic refactored into reusable helpers.
 
 ### Fixed
+
 - **`norm_msl` / `norm_sm` index swap** – the original code derived
   `norm_msl` from channel index 3 (SM) and `norm_sm` from index 2 (MSL),
   causing each variable to be normalised by the other's dynamic range.

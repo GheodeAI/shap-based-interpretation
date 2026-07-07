@@ -1,10 +1,11 @@
 # SHAP-Based Interpretation of Heatwave Reconstructions with Autoencoders
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: EUPL1.2](https://img.shields.io/badge/License-EUPL1.2-yellow.svg)](LICENSE)
+[![DOI: 10.5281/zenodo.20324346](https://zenodo.org/badge/DOI/10.5281/zenodo.20324346.svg)](https://doi.org/10.5281/zenodo.20324346)
 
-> **Companion code for:**  
-
+[
+](LICENSE)
 
 ---
 
@@ -43,24 +44,24 @@ This repository contains the code used to compute and visualise **SHAP (SHapley 
 └── README.md
 ```
 
-> **Note:** The `models/` and `data/` directories (containing the pre-trained `.h5` AE weights and the ERA5-based NetCDF files) are **not included** in this repository due to size constraints. See [Data & Models](#data--models) below.
+> **Note:** The `models/` and `data/` directories (containing the pre-trained `.h5` AE weights and the ERA5-based NetCDF files) are **not included** in this repository due to size constraints. See [Data &amp; Models](#data--models) below.
 
 ---
 
 ## Case Studies
 
-| # | Type  | Period                  | Description              |
-|---|-------|-------------------------|--------------------------|
-| 1 | HW    | 01 Aug – 10 Aug 2003    | European Heatwave 2003   |
-| 2 | HW    | 19 Jul – 28 Jul 2014    | Heatwave 2014            |
-| 3 | HW    | 25 Jul – 03 Aug 2018    | Heatwave 2018            |
-| 4 | HW    | 20 Jul – 29 Jul 2019    | Heatwave 2019            |
-| 5 | HW    | 10 Aug – 19 Aug 2022    | Heatwave 2022            |
-| 1 | NO-HW | 01 Jul – 10 Jul 2004    | Control period 2004      |
-| 2 | NO-HW | 15 Jul – 24 Jul 2012    | Control period 2012      |
-| 3 | NO-HW | 10 Jul – 19 Jul 2013    | Control period 2013      |
-| 4 | NO-HW | 01 Aug – 10 Aug 2019    | Control period 2019      |
-| 5 | NO-HW | 13 Jun – 22 Jun 2021    | Control period 2021      |
+| # | Type  | Period                | Description            |
+| - | ----- | --------------------- | ---------------------- |
+| 1 | HW    | 01 Aug – 10 Aug 2003 | European Heatwave 2003 |
+| 2 | HW    | 19 Jul – 28 Jul 2014 | Heatwave 2014          |
+| 3 | HW    | 25 Jul – 03 Aug 2018 | Heatwave 2018          |
+| 4 | HW    | 20 Jul – 29 Jul 2019 | Heatwave 2019          |
+| 5 | HW    | 10 Aug – 19 Aug 2022 | Heatwave 2022          |
+| 1 | NO-HW | 01 Jul – 10 Jul 2004 | Control period 2004    |
+| 2 | NO-HW | 15 Jul – 24 Jul 2012 | Control period 2012    |
+| 3 | NO-HW | 10 Jul – 19 Jul 2013 | Control period 2013    |
+| 4 | NO-HW | 01 Aug – 10 Aug 2019 | Control period 2019    |
+| 5 | NO-HW | 13 Jun – 22 Jun 2021 | Control period 2021    |
 
 Periods are defined in [`config/case_studies.json`](config/case_studies.json) and can be freely modified without touching any Python code.
 
@@ -68,12 +69,12 @@ Periods are defined in [`config/case_studies.json`](config/case_studies.json) an
 
 ## Input Variables
 
-| Index | Name  | Description                          |
-|-------|-------|--------------------------------------|
-| 0     | Z500  | Geopotential height at 500 hPa       |
-| 1     | PEva  | Potential evapotranspiration         |
-| 2     | MSL   | Mean sea-level pressure              |
-| 3     | SM    | Soil moisture                        |
+| Index | Name | Description                    |
+| ----- | ---- | ------------------------------ |
+| 0     | Z500 | Geopotential height at 500 hPa |
+| 1     | PEva | Potential evapotranspiration   |
+| 2     | MSL  | Mean sea-level pressure        |
+| 3     | SM   | Soil moisture                  |
 
 ---
 
@@ -136,14 +137,14 @@ python scripts/shap_regression.py \
 
 Outputs are written to `shap/mod512/cs_hw{N}/` and `shap/mod512/cs_nohw{N}/` for each case study pair.
 
-| Flag | Description |
-|------|-------------|
-| `--config` | Model & domain config (default: `config/model.json`) |
-| `--case-studies` | Case study periods (default: `config/case_studies.json`) |
-| `--output-dir` | Root output directory |
-| `--meansum` | Save mean-of-sum arrays (default: plain sum) |
-| `--telegram` | Send Telegram notifications on completion / error |
-| `-v / --verbose` | Enable DEBUG logging |
+| Flag               | Description                                               |
+| ------------------ | --------------------------------------------------------- |
+| `--config`       | Model & domain config (default:`config/model.json`)     |
+| `--case-studies` | Case study periods (default:`config/case_studies.json`) |
+| `--output-dir`   | Root output directory                                     |
+| `--meansum`      | Save mean-of-sum arrays (default: plain sum)              |
+| `--telegram`     | Send Telegram notifications on completion / error         |
+| `-v / --verbose` | Enable DEBUG logging                                      |
 
 ### 2. Generate figures
 
@@ -179,6 +180,7 @@ python scripts/shap_composite.py \
 
 Outputs are saved under `shap/comp_shap/{var}/`.
 
+<<<<<<< HEAD
 | Flag | Description |
 |------|-------------|
 | `--vars` | One or more of `z500 msl peva sm` (default: all four) |
@@ -193,6 +195,22 @@ Outputs are saved under `shap/comp_shap/{var}/`.
 | msl  | BrBG → PuOr blend | 0.60 | data-driven |
 | peva | RdBu_r (white centre, cf11) | — | ±1e-4 |
 | sm   | RdBu_r (white centre, cf7)  | — | ±0.20 |
+=======
+| Flag                | Description                                             |
+| ------------------- | ------------------------------------------------------- |
+| `--vars`          | One or more of `z500 msl peva sm` (default: all four) |
+| `--no-individual` | Save only the 5-case mean figure, skip per-case figures |
+| `--dataset`       | Override the NetCDF path from config                    |
+
+**Variable-specific colour settings applied automatically:**
+
+| Variable | Composite cmap              | SHAP threshold | Composite limits |
+| -------- | --------------------------- | -------------- | ---------------- |
+| z500     | BrBG → PuOr blend          | 0.30           | data-driven      |
+| msl      | BrBG → PuOr blend          | 0.60           | data-driven      |
+| peva     | RdBu_r (white centre, cf11) | —             | ±1e-4           |
+| sm       | RdBu_r (white centre, cf7)  | —             | ±0.20           |
+>>>>>>> 07d9f4cc07bae8dfd6a1a5ba0624a9d61920f4a9
 
 ### 3. Interactive exploration (notebooks)
 
@@ -237,12 +255,12 @@ shap/
 
 The following files are required but **not included** in this repository:
 
-| File | Description |
-|------|-------------|
-| `models/MvAE_fr_mv512.h5` | Pre-trained multi-variable AE (post-industrial) |
-| `models/MvAE_atrib_fr_512_pre.h5` | Pre-trained AE (pre-industrial) |
-| `data/data_dailyMean_zpms_1940-2022.nc` | ERA5 Z500 / PEva / MSL / SM daily means |
-| `data/data_dailyMax_t2m_1940-2022.nc` | ERA5 daily maximum 2 m temperature |
+| File                                      | Description                                     |
+| ----------------------------------------- | ----------------------------------------------- |
+| `models/MvAE_fr_mv512.h5`               | Pre-trained multi-variable AE (post-industrial) |
+| `models/MvAE_atrib_fr_512_pre.h5`       | Pre-trained AE (pre-industrial)                 |
+| `data/data_dailyMean_zpms_1940-2022.nc` | ERA5 Z500 / PEva / MSL / SM daily means         |
+| `data/data_dailyMax_t2m_1940-2022.nc`   | ERA5 daily maximum 2 m temperature              |
 
 The NetCDF files are derived from **ERA5 reanalysis** (Hersbach et al., 2020) and can be obtained from the [Copernicus Climate Data Store](https://cds.climate.copernicus.eu/).
 
@@ -266,8 +284,11 @@ Then pass `--telegram` to either script.
 
 If you use this code in your research, please cite:
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 07d9f4cc07bae8dfd6a1a5ba0624a9d61920f4a9
 ---
 
 ## License
