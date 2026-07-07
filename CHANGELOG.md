@@ -18,7 +18,6 @@
 - `shap/comp_shap/` output directory stubs added to the repo structure.
 
 ### Details
-
 - **Z500 / MSL composite cmap** – BrBG (cool tail) blended with PuOr (warm
   tail), with a semi-transparent black band at the zero crossing
   (colors[7] = [0,0,0,0.3]), as specified.

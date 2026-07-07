@@ -180,6 +180,22 @@ python scripts/shap_composite.py \
 
 Outputs are saved under `shap/comp_shap/{var}/`.
 
+<<<<<<< HEAD
+| Flag | Description |
+|------|-------------|
+| `--vars` | One or more of `z500 msl peva sm` (default: all four) |
+| `--no-individual` | Save only the 5-case mean figure, skip per-case figures |
+| `--dataset` | Override the NetCDF path from config |
+
+**Variable-specific colour settings applied automatically:**
+
+| Variable | Composite cmap | SHAP threshold | Composite limits |
+|----------|---------------|----------------|------------------|
+| z500 | BrBG → PuOr blend | 0.30 | data-driven |
+| msl  | BrBG → PuOr blend | 0.60 | data-driven |
+| peva | RdBu_r (white centre, cf11) | — | ±1e-4 |
+| sm   | RdBu_r (white centre, cf7)  | — | ±0.20 |
+=======
 | Flag                | Description                                             |
 | ------------------- | ------------------------------------------------------- |
 | `--vars`          | One or more of `z500 msl peva sm` (default: all four) |
@@ -194,6 +210,7 @@ Outputs are saved under `shap/comp_shap/{var}/`.
 | msl      | BrBG → PuOr blend          | 0.60           | data-driven      |
 | peva     | RdBu_r (white centre, cf11) | —             | ±1e-4           |
 | sm       | RdBu_r (white centre, cf7)  | —             | ±0.20           |
+>>>>>>> 07d9f4cc07bae8dfd6a1a5ba0624a9d61920f4a9
 
 ### 3. Interactive exploration (notebooks)
 
@@ -267,6 +284,11 @@ Then pass `--telegram` to either script.
 
 If you use this code in your research, please cite:
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 07d9f4cc07bae8dfd6a1a5ba0624a9d61920f4a9
 ---
 
 ## License

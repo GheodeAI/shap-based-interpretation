@@ -59,3 +59,8 @@ Thumbs.db
 .vscode/
 *.sublime-project
 *.sublime-workspace
+
+# -- Images and other -------------------------------------------------------
+*.png
+check_nans.py
+*.log
